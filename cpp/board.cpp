@@ -19,48 +19,38 @@ b::Board::Board(){
 		for(int j=0; j<this->size; j++){
 
 
-
-
-			this->spaces[i][j] = new s::Space(i,j); //static_cast<Space>(std::malloc(sizeof(Space)));
-			//do left, right, etc. here
+			this->spaces[i][j] = new s::Space(i,j); 
 
 			//replace with actual piece classes, which will require inner if statements
 			if(i == this->size - this->size){
 				
-				int* arr = static_cast<int*>(std::malloc(sizeof(int)*2));
-				arr[0] = i;
-				arr[1] = j;
 
-				this->spaces[i][j]->curr = new p::Piece(0,n);
-				this->spaces[i][j]->curr->setPosition(arr);
+				//make chess set array
+				//and allocate / populate
+				//then assign curr to addresses of each 
+				//according to ifs
+				//make temp for board?
+
+				this->spaces[i][j]->curr = new p::Piece(0,n, i, j);
 				
 				n++;
 				
-				std::free(arr);
 
 			}
 
 			else if(i == (this->size - (this->size - 1))){
 				
-				int* arr = static_cast<int*>(std::malloc(sizeof(int)*2));
-				arr[0] = i;
-				arr[1] = j;
-				
 				n = 0;
 
-				this->spaces[i][j]->curr = new p::Piece(0,n);
+				this->spaces[i][j]->curr = new p::Piece(0,n, i, j);
 				
-				std::free(arr);
 
 			}
 
 			else if(i == (this->size - 2)){
 
-				int* arr = static_cast<int*>(std::malloc(sizeof(int)*2));
-				arr[0] = i;
-				arr[1] = j;
 
-				this->spaces[i][j]->curr = new p::Piece(1,n);
+				this->spaces[i][j]->curr = new p::Piece(1, n, i, j);
 
 
 				if(j == 7){
@@ -69,20 +59,15 @@ b::Board::Board(){
 
 				}
 
-				std::free(arr);
 
 			}
 
 			else if(i == (this->size-1)){
 
-				int* arr = static_cast<int*>(std::malloc(sizeof(int)*2));
-				arr[0] = i;
-				arr[1] = j;
 				
-				this->spaces[i][j]->curr = new p::Piece(1,n);
+				this->spaces[i][j]->curr = new p::Piece(1,n, i, j);
 				n++;
 
-				std::free(arr);
 
 			}
 
@@ -93,6 +78,79 @@ b::Board::Board(){
 			//this->spaces[i][j]->curr = NULL;
 
 			//adjust pointers for each row
+
+		}
+
+
+	}
+
+
+	for(int i=0; i<this->size; i++){
+
+
+		for(int j=0; j<this->size; j++){
+
+
+			if(i < 7){
+				
+				this->spaces[i][j]->front = this->spaces[i+1][j];
+
+			}
+			else{
+
+				this->spaces[i][j]->front = nullptr;
+
+			}
+
+
+			if(i > 0){
+
+
+				this->spaces[i][j]->back = this->spaces[i-1][j];
+
+			}
+			else{
+
+
+
+				this->spaces[i][j]->back = nullptr;
+			}
+
+			if(j > 0){
+
+
+
+				this->spaces[i][j]->left = this->spaces[i][j-1];
+
+			}
+
+			else{
+
+
+				this->spaces[i][j]->left = nullptr;
+
+			}
+
+			if(j < 7){
+
+
+				this->spaces[i][j]->right = this->spaces[i][j+1];
+
+			}
+
+			else{
+
+
+				this->spaces[i][j]->right = nullptr;
+
+			}
+
+
+
+
+			
+
+
 
 		}
 

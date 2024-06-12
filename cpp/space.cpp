@@ -26,3 +26,11 @@ int s::Space::getCol() const{
     return this->pos[1];
 
 }
+
+
+int* s::Space::getPosition(){
+
+
+	return pos;
+
+}

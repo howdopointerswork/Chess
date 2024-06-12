@@ -19,7 +19,15 @@ int main(int argc, char* argv[]){
     //make unit tests
     //std::cout << test.getCol() << std::endl;
 
-    board.findPiece(0,4)->printInfo();
+    //board.findPiece(0,4)->printInfo();
+
+    
+    
+    int* arr = board.getSpace(1,3)->right->getPosition();
+
+
+    
+ 	std::cout << arr[0] << " " << arr[1] << std::endl;
 
 
 
