@@ -9,12 +9,12 @@ b::Board::Board(){
 
 	int n = 1;
 	
-
+//make board initialize function
+//make set board function (pointers)
+//make pieces and populate function	
 
 	for(int i=0; i<this->size; i++){
-
 		
-
 
 		for(int j=0; j<this->size; j++){
 
@@ -177,4 +177,29 @@ p::Piece* b::Board::findPiece(int x, int y){
 
 	return getSpace(x,y)->curr;
 
+}
+
+
+
+void b::makeSpaces(){
+
+
+	return;
+
+}
+
+
+
+void b::connectSpaces(){
+
+
+	return;
+}
+
+
+
+void b::populate(){
+
+
+	return;
 }
