@@ -2,11 +2,15 @@
 #include "../headers/piece.h"
 
 
-p::Piece::Piece(bool colour, int rank){
+p::Piece::Piece(bool colour, int rank, int x, int y){
 	
 	this->colour = colour;
 
 	this->rank = rank;
+
+	this->x = x;
+
+	this->y = y;
 	
 
 }
