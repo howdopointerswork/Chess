@@ -16,7 +16,7 @@ namespace p{
 
             Piece(); //no-arg constructor
 
-            Piece(bool colour, int rank); //overloaded constructor
+            Piece(bool colour, int rank, int x, int y); //overloaded constructor
 
             void setPosition(int* arr);
 

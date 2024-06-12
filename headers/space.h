@@ -28,6 +28,8 @@ namespace s{
 
             int getCol() const;
 
+            int* getPosition();
+
 
 
 

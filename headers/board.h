@@ -14,6 +14,8 @@ namespace b{
 
             p::Piece* findPiece(int x, int y); //find piece on board by Space coordinate
 
+            s::Space* getSpace(int x, int y);
+
 
         private:
 
@@ -30,7 +32,7 @@ namespace b{
         	int checkPieces_Colour(); //perhaps make this and above public
 
 
-        	s::Space* getSpace(int x, int y);
+        	
 
 
 
