@@ -2,16 +2,46 @@
 #include "../headers/board.h"
 
 
+
+b::Board::Board(){ 
+//constructor
 //boards start from the bottom left
-b::Board::Board(){
 
-	this->size = 8;
-
-	int n = 1;
 	
-//make board initialize function
-//make set board function (pointers)
-//make pieces and populate function	
+
+
+	this->size = 8; //set size for nested loops
+
+	makeSpaces(1); //initialize spaces in spaces array
+
+	connectSpaces(); //set pointers for each space
+
+	
+
+
+}
+
+
+s::Space* b::Board::getSpace(int x, int y){ 
+//returns a space at index x, y of spaces array
+
+	return spaces[x][y];
+
+
+}
+
+
+p::Piece* b::Board::findPiece(int x, int y){
+//returns the pointer piece at the specified space
+
+	return getSpace(x,y)->curr;
+
+}
+
+
+
+void b::Board::makeSpaces(int n){
+
 
 	for(int i=0; i<this->size; i++){
 		
@@ -22,14 +52,11 @@ b::Board::Board(){
 			this->spaces[i][j] = new s::Space(i,j); 
 
 			//replace with actual piece classes, which will require inner if statements
-			if(i == this->size - this->size){
+			if(i == 0){
 				
 
-				//make chess set array
-				//and allocate / populate
-				//then assign curr to addresses of each 
-				//according to ifs
-				//make temp for board?
+				//replace each of the lines like below with
+				//pieces in chessSet
 
 				this->spaces[i][j]->curr = new p::Piece(0,n, i, j);
 				
@@ -84,8 +111,14 @@ b::Board::Board(){
 
 	}
 
+}
 
-	for(int i=0; i<this->size; i++){
+
+
+void b::Board::connectSpaces(){
+
+
+	for(int i=0; i<size; i++){
 
 
 		for(int j=0; j<this->size; j++){
@@ -156,50 +189,92 @@ b::Board::Board(){
 
 
 	}
+}
+
+
+
+void b::Board::moveScan(int rank){
+
+
+	switch(rank){
+
+		case 0:
+
+			std::cout << "Pawn" << std::endl;
+			break;
+		
+		case 1:
+		
+			std::cout << "Rook" << std::endl;
+			break;
+
+		case 2:
+
+			std::cout << "Knight" << std::endl;
+			break;
+
+		case 3:
+				
+			std::cout << "Bishop" << std::endl;
+			break;
+
+		case 4:
+
+			std::cout << "Queen" << std::endl;
+			break;
+
+		case 5:
+			
+
+			std::cout << "King" << std::endl;
+			break;
+		}
+	}
+
+
+
+int b::Board::getSize(){
+
+
+	return this->size;
+
+}
+
+
+
+void b::Board::populate(){
+
+	bool currCol = 0;
+
+	int currRank = 0;
+
+	int arrSize = this->size * 4;
+
+
+	for(int i = 0; i < arrSize; i++){
+
+		//make pieces here
+
+		//
+
+		if(i == (arrSize/2)){
+
+
+			currCol = 1;
+
+		}
+		//else
+
+
+		//if(i == 0 || i == 7)
+
+
+
+
+
+
+	}
 
 	
 
-
-}
-
-
-s::Space* b::Board::getSpace(int x, int y){
-
-
-	return spaces[x][y];
-
-
-}
-
-
-p::Piece* b::Board::findPiece(int x, int y){
-
-
-	return getSpace(x,y)->curr;
-
-}
-
-
-
-void b::makeSpaces(){
-
-
-	return;
-
-}
-
-
-
-void b::connectSpaces(){
-
-
-	return;
-}
-
-
-
-void b::populate(){
-
-
-	return;
 }
