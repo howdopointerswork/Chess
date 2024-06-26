@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include "../headers/piece.h" //add cpp here later
 
+#pragma once 
+
 namespace s{
 
-    #pragma once 
 
     class Space{
 
@@ -29,6 +30,8 @@ namespace s{
             int getCol() const;
 
             int* getPosition();
+
+            bool update(bool tf);
 
 
 

@@ -34,3 +34,12 @@ int* s::Space::getPosition(){
 	return pos;
 
 }
+
+bool s::Space::update(bool tf){
+
+
+	this->occupied = tf;
+
+	return tf;
+
+}

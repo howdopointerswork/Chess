@@ -16,6 +16,10 @@ b::Board::Board(){
 
 	connectSpaces(); //set pointers for each space
 
+	makeChessSet();
+
+	populate();
+
 	
 
 
@@ -50,57 +54,13 @@ void b::Board::makeSpaces(int n){
 
 
 			this->spaces[i][j] = new s::Space(i,j); 
+			this->spaces[i][j]->curr = new p::Piece(0,-1,i,j);
+	
 
-			//replace with actual piece classes, which will require inner if statements
-			if(i == 0){
-				
-
-				//replace each of the lines like below with
-				//pieces in chessSet
-
-				this->spaces[i][j]->curr = new p::Piece(0,n, i, j);
-				
-				n++;
-				
-
-			}
-
-			else if(i == (this->size - (this->size - 1))){
-				
-				n = 0;
-
-				this->spaces[i][j]->curr = new p::Piece(0,n, i, j);
-				
-
-			}
-
-			else if(i == (this->size - 2)){
-
-
-				this->spaces[i][j]->curr = new p::Piece(1, n, i, j);
-
-
-				if(j == 7){
-
-					n = 1;
-
-				}
 
 
 			}
-
-			else if(i == (this->size-1)){
-
-				
-				this->spaces[i][j]->curr = new p::Piece(1,n, i, j);
-				n++;
-
-
-			}
-
-
-
-					
+	
 
 			//this->spaces[i][j]->curr = NULL;
 
@@ -111,7 +71,7 @@ void b::Board::makeSpaces(int n){
 
 	}
 
-}
+
 
 
 
@@ -242,13 +202,23 @@ int b::Board::getSize(){
 
 
 
-void b::Board::populate(){
+void b::Board::makeChessSet(){
 
 	bool currCol = 0;
 
-	int currRank = 0;
+	int currRank = 1;
 
 	int arrSize = this->size * 4;
+
+	int posX = 0;
+
+	int posY = 0;
+
+	int inc = 1;
+
+
+	//rows will be i at 0 and j 0-7
+	//and i at 1 and j at 0-7
 
 
 	for(int i = 0; i < arrSize; i++){
@@ -257,16 +227,82 @@ void b::Board::populate(){
 
 		//
 
+		if(posY == 8){
+
+			posY = 0;
+
+			//match posx with previous value and change it and then break
+
+			switch(posX){
+
+				case 0:
+
+					posX = 1;
+					break;
+				
+				case 1:
+				
+					posX = 6;
+					inc *= -1;
+					break;
+
+				case 6:	
+
+					posX = 7;
+					currRank = 1;	
+					break;
+				}
+
+		}
+
 		if(i == (arrSize/2)){
 
 
 			currCol = 1;
 
 		}
-		//else
 
 
-		//if(i == 0 || i == 7)
+		chessSet[i] = new p::Piece(currCol, currRank, posX, posY);
+		//std::cout << posX << "," << posY << ": " << chessSet[i]->getRank() << std::endl;
+
+		posY++;
+
+		if(posX == 0 || posX == 7){
+
+			currRank += inc;
+
+			if(currRank == 6){
+
+				currRank = 3;
+				inc *= -1;
+			}
+
+		}
+		else{
+
+
+			currRank = 0;
+		}
+
+
+
+
+		//first 8 will be
+		//0 = rook
+		//1 = knight
+		//2 = bishop
+		//3 = queen
+		//4 = king
+		//5 = bishop
+		//6 = knight
+		//7 = rook
+		//8-15 = pawn
+		//16-23 = black set
+		//24-31 = black pawns
+		 
+
+		 //0, 7,  is rook
 
 
 
@@ -278,3 +314,35 @@ void b::Board::populate(){
 	
 
 }
+
+
+
+
+void b::Board::populate(){
+
+	int ind = 0;
+
+	for(int i=0; i < this->size; i++){
+
+		for(int j=0; j < this->size; j++){
+
+
+			if(i == 0 || i == 1 || i == 6 || i == 7){
+
+				spaces[i][j]->curr = chessSet[ind];
+				ind++;
+
+				}
+			
+			
+
+
+
+
+		}
+
+	}
+
+}	
+
+
