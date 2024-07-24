@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 
+
 namespace p{
 
     #pragma once
@@ -46,18 +47,32 @@ namespace p{
 
     
             //change to private and use getter
-            bool colour; //colour, where 0 is white and 1 is black 
+            int colour; //colour, where 0 is white and 1 is black 
             //change to int maybe
+
+            int x;
+
+            int y;
 
             Piece(); //no-arg constructor
 
-            Piece(bool colour, int rank, int x, int y); //overloaded constructor
+            Piece(int colour, int rank, int x, int y); //overloaded constructor
 
             void setPosition(int* arr);
 
             void printInfo();
 
+            void set_moveCount(int toSet);
+
             int getRank();
+
+            int* pM; //possible moves by coordinate
+
+            int moveCount; //possible moves according to pos
+
+            void print_pM();
+
+
 
 
 
@@ -65,13 +80,11 @@ namespace p{
         
         private:
         
-            int movesP; //possible moves according to pos
+            
 
             int rank;
 
-            int x;
 
-            int y;
 
 
             

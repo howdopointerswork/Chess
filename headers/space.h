@@ -33,8 +33,15 @@ namespace s{
 
             bool update(bool tf);
 
+            void addSelf(p::Piece* p);
+
+            void setRow(int n);
+
+            void setCol(int n);
 
 
+
+            //make available moves array here
 
 
 

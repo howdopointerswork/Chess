@@ -43,3 +43,31 @@ bool s::Space::update(bool tf){
 	return tf;
 
 }
+
+
+
+void s::Space::addSelf(p::Piece* p){
+
+
+
+	p->moveCount++;
+	p->pM[p->moveCount-1] = this->getRow();
+	p->moveCount++;
+	p->pM[p->moveCount-1] = this->getCol();
+
+
+
+}
+
+
+void s::Space::setRow(int n){
+
+
+	this->row = n;
+}
+
+void s::Space::setCol(int n){
+
+
+	this->row = n;
+}

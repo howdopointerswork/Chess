@@ -3,6 +3,7 @@
 #include "space.h"
 #include "piece.h"
 
+
 #pragma once
 
 namespace b{
@@ -17,10 +18,17 @@ namespace b{
 
             s::Space* getSpace(int x, int y);
 
-            void moveScan(int rank);
+            void moveScan(s::Space* s);
+
+            int colourCheck(p::Piece* p);
+
+            void swap(s::Space* p1, s::Space* p2, int i, int j);
 
             int getSize();
 
+            p::Piece* getPiece(int index);
+
+            p::Piece* chessSet[32];
 
 
 
@@ -33,7 +41,7 @@ namespace b{
         	
         	s::Space* spaces[8][8]; //board for holding spaces
 
-            p::Piece* chessSet[32];
+           
 
             //move function here
 
@@ -47,7 +55,12 @@ namespace b{
 
             void populate();
 
-        
+            int moveCheck(s::Space* current, s::Space* check);
+
+            void addShift(s::Space* from, s::Space* to, p::Piece* src);
+
+            int boundCheck(s::Space* s);
+
 
 
 
