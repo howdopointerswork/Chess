@@ -54,6 +54,8 @@ namespace p{
 
             int y;
 
+            bool moveDouble;
+
             Piece(); //no-arg constructor
 
             Piece(int colour, int rank, int x, int y); //overloaded constructor
@@ -71,6 +73,8 @@ namespace p{
             int moveCount; //possible moves according to pos
 
             void print_pM();
+
+    
 
 
 

@@ -72,7 +72,7 @@ int y::Player::get_arrSize(){
 void y::Player::printArr(){
 
 
-
+//update this, since we are swapping board
 	for(int i=0; i<this->arrSize; i++){
 
 		std::cout << i+1 << ". " << arr[i]->curr->getRank() << ", " << arr[i]->curr->colour << " at: " << arr[i]->getRow() << ", " << arr[i]->getCol() << std::endl;
@@ -87,3 +87,12 @@ s::Space * y::Player::get(int n){
 	return this->arr[n];
 }
 
+
+void y::Player::update_arr(int index, s::Space* board_space){
+
+	this->arr[index] = board_space;
+
+	//std::cout << this->arr[index]->getRow() << std::endl;
+
+
+}

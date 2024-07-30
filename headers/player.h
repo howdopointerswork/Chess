@@ -27,6 +27,8 @@ namespace y{
 
 			s::Space* get(int n);
 
+			void update_arr(int index, s::Space* board_space);
+
 
 			//int* positions = new int[];
 			//for positions, make dynamic array
@@ -47,6 +49,8 @@ namespace y{
 			s::Space* arr[16];
 
 			int arrSize;
+
+
 
 
 

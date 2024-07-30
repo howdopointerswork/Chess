@@ -186,7 +186,7 @@ void b::Board::moveScan(s::Space* s){
 //left and right should swap
 
 
-
+//make 
 
 	if(s->curr->getRank() >= 0){
 
@@ -195,22 +195,14 @@ void b::Board::moveScan(s::Space* s){
 			case 0:
 
 				std::cout << "Pawn" << std::endl;
-				//std::cout << "x: " << s->front->getRow() << ", y: " << s->front->getCol() << std::endl;
-
-
-				//if(s->curr->colour == 0){
-
-					//Pawn movement forward
-				//fix for black
-
-				//limit double movement to just once
+		
 				if(s->curr->colour == 0){
 					if((s->getRow() < getSize()-1) && moveCheck(s, s->front) != s->curr->colour){
 
 						s->front->addSelf(s->curr);
 						std::cout << "x: " << s->front->getRow() << ", y: " << s->front->getCol() << std::endl;
 
-						if(moveCheck(s->front, s->front->front) != s->curr->colour && s->getRow() > 0){
+						if(moveCheck(s->front, s->front->front) != s->curr->colour && s->getRow() == 1 && s->curr->moveDouble){
 
 							s->front->front->addSelf(s->curr);
 							std::cout << "x: " << s->front->front->getRow() << ", y: " << s->front->front->getCol() << std::endl;
@@ -261,7 +253,7 @@ void b::Board::moveScan(s::Space* s){
 				s->back->addSelf(s->curr);
 				std::cout << "x: " << s->back->getRow() << ", y: " << s->back->getCol() << std::endl;
 
-				if(moveCheck(s->back, s->back->back) != s->curr->colour && s->getRow() > 1){
+				if(moveCheck(s->back, s->back->back) != s->curr->colour && s->getRow() > 1 && s->curr->moveDouble){
 
 					s->back->back->addSelf(s->curr);
 					std::cout << "x: " << s->back->back->getRow() << ", y: " << s->back->back->getCol() << std::endl;
@@ -949,7 +941,33 @@ void b::Board::moveScan(s::Space* s){
 //work on this next
 void b::Board::swap(s::Space* p1, s::Space* p2, int i, int j){
 
+	//Swap works, but we need to update in game manager
 
+	std::cout << "Before:" << std::endl;
+	
+
+	std::cout << "p1 address: " << p1 << " p1 row: " << p1->getRow() << " p1 col: " << p1->getCol() << " p1 rank: " << p1->curr->getRank() << std::endl;
+	std::cout << "p2 address: " << p2 << " p2 row: " << p2->getRow() << " p2 col: " << p2->getCol()  << " p2 rank: " << p2->curr->getRank() << std::endl;
+
+
+	s::Space* tmp = p1;
+	tmp->setRow(p1->getRow());
+	tmp->setCol(p1->getCol());
+	p1 = p2;
+	p1->setRow(p2->getRow());
+	p1->setCol(p2->getCol());
+	p2 = tmp;
+	p2->setRow(tmp->getRow());
+	p2->setCol(tmp->getCol());
+
+
+
+	std::cout << "After:" << std::endl;
+
+	std::cout << "p1 address: " << p1 << " p1 row: " << p1->getRow() << " p1 col: " << p1->getCol()  << " p1 rank: " << p1->curr->getRank() << std::endl;
+	std::cout << "p2 address: " << p2 << " p2 row: " << p2->getRow() << " p2 col: " << p2->getCol()  << " p2 rank: " << p2->curr->getRank() << std::endl;
+
+/*
 	if(p1->curr->colour != p2->curr->colour && p2->curr->getRank() >= 0){
 
 		delete[] this->spaces[i][j];
@@ -959,7 +977,7 @@ void b::Board::swap(s::Space* p1, s::Space* p2, int i, int j){
 		std::cout << "Ate piece" << std::endl;
 
 	}
-	else{
+	else if(p1->curr->colour != p2->curr->colour){
 
 		std::cout << "Hello" << std::endl;
 		s::Space* tmp;
@@ -989,7 +1007,7 @@ void b::Board::swap(s::Space* p1, s::Space* p2, int i, int j){
 
 
 		delete[] tmp;
-		}
+		}*/
 
 	std::cout << "Swapped: " << p1->getRow() << "," << p1->getCol() << std::endl;
 	std::cout << "Swapped: " << p2->getRow() << "," << p2->getCol() << std::endl; 

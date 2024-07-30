@@ -214,7 +214,7 @@ void g::GameManager::runGame(b::Board board){ //add player sets and board
 				getPlayer(this->n)->printArr();
 
 				std::cin>>from;
-
+				//check moveDouble for pawns
 				if(from < getPlayer(this->n)->get_arrSize()){
 
 					std::cout << std::endl;
@@ -227,8 +227,19 @@ void g::GameManager::runGame(b::Board board){ //add player sets and board
 					std::cin >> confirm;
 
 					if(confirm){
-
+						//fix this swap for player array
+						//fixed but now empty space is in player array
+						//getPlayer(this->n)->update_arr(from-1, board.getSpace(getPlayer(this->n)->get(from-1)->curr->pM[to-1], getPlayer(this->n)->get(from-1)->curr->pM[to]));
+						//getPlayer(this->n)->update_arr(from-1, board.getSpace(getPlayer(this->n)->get(from-1)->getRow(), getPlayer(this->n)->get(from-1)->getCol()));
 						board.swap(board.getSpace(getPlayer(this->n)->get(from-1)->getRow(), getPlayer(this->n)->get(from-1)->getCol()), board.getSpace(getPlayer(this->n)->get(from-1)->curr->pM[to-1], getPlayer(this->n)->get(from-1)->curr->pM[to]), getPlayer(this->n)->get(from-1)->curr->pM[to-1], getPlayer(this->n)->get(from-1)->curr->pM[to]);
+						getPlayer(this->n)->update_arr(from-1, board.getSpace(getPlayer(this->n)->get(from-1)->curr->pM[to-1], getPlayer(this->n)->get(from-1)->curr->pM[to]));
+						
+						std::cout << getPlayer(this->n)->get(from-1)->getRow() << " " << getPlayer(this->n)->get(from-1)->getCol() << std::endl; 
+						//getPlayer(this->n)->get(from-1) = board.getSpace(getPlayer(this->n)->get(from-1)->getRow(), getPlayer(this->n)->get(from-1)->getCol());
+						//getPlayer(this->n)->get(from-1) = board.getSpace(getPlayer(this->n)->get(from-1);
+
+						//std::cout << board.getSpace(getPlayer(this->n)->get(from-1)->getRow(), getPlayer(this->n)->get(from-1)->getCol()) << std::endl;
+						//std::cout << getPlayer(this->n)->get(from-1) << std::endl;
 						confirm = false;
 						this->n++;
 
